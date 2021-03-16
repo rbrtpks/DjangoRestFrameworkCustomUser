@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 
 
@@ -36,9 +37,12 @@ class UserManager(BaseUserManager):
 
 
 class CustomUser(AbstractUser):
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
     email = models.EmailField('E-mail', unique=True)
     fone = models.CharField('Telefone', max_length=15)
-    is_staff = models.BooleanField('Membro da equipe', default=True)
+    is_staff = models.BooleanField('Membro da equipe admin', default=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'fone']
