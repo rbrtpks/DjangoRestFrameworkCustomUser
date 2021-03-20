@@ -8,6 +8,7 @@ from .models import CustomUser
 
 @admin.register(CustomUser)
 class CustomUserAdmin(UserAdmin):
+    ordering = ('email',)  # Not create username in table
     add_form = CustomUserCreateForm
     form = CustomUserChangeForm
     model = CustomUser
